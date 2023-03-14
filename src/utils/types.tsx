@@ -1,7 +1,7 @@
 // Global State
-import {NavigationProp, RouteProp} from '@react-navigation/native';
-import {ReactNode} from 'react';
-import {FlexAlignType, TextStyle, ViewStyle} from 'react-native';
+import { NavigationProp, RouteProp } from "@react-navigation/native";
+import { ReactNode } from "react";
+import { FlexAlignType, TextStyle, ViewStyle } from "react-native";
 import {
   ANT_ICON_NAMES,
   FANISTO_ICON_NAMES,
@@ -10,8 +10,8 @@ import {
   FOUNDATION_ICON_NAMES,
   ICON_TYPES,
   IONICONS_ICON_NAMES,
-} from './enums';
-import {Colors} from './globalStyles';
+} from "./enums";
+import { Colors } from "./globalStyles";
 
 export type AppColorsType = {
   [key in ColorKeys]: string;
@@ -20,7 +20,7 @@ export type AppColorsType = {
 export type ColorKeys = keyof typeof Colors;
 
 // Apps State
-export type Platform = 'ios' | 'android';
+export type Platform = "ios" | "android";
 
 export interface ScreenStyle extends ViewStyle {
   backgroundColor?: string;
@@ -37,17 +37,18 @@ export interface TextComponentStyle extends TextStyle {
 
 export type RootNavigationProps = NavigationProp<RootStackParamList>;
 
-type TransparentModals = 'ImagePicker' | 'UserProfile';
+type TransparentModals = "ImagePicker" | "UserProfile";
 
 export type AppTransparentModalRouteProp = RouteProp<
   RootStackParamList,
-  'AppTransparentModal'
+  "AppTransparentModal"
 >;
 
 export type RootStackParamList = {
   Settings: undefined;
   Home: undefined;
-  ['AppTransparentModal']: {
+  Mitnadvim: undefined;
+  ["AppTransparentModal"]: {
     type: TransparentModals;
     withDelete?: boolean;
     photoNumber?: number;
@@ -85,23 +86,23 @@ export type AnimatedGHContext = {
 };
 
 export type JustifyContentType =
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly'
+  | "flex-start"
+  | "flex-end"
+  | "center"
+  | "space-between"
+  | "space-around"
+  | "space-evenly"
   | undefined;
 
 export type AlignItems = FlexAlignType;
 
-export type FlexDirection = 'column' | 'row';
+export type FlexDirection = "column" | "row";
 
 // Firebase
 export type FirebaseUser = Object; // FirebaseAuthTypes.User;
 
-export type DBCollection = 'users' | 'chats';
-export type SubCollection = 'messages';
+export type DBCollection = "users" | "chats";
+export type SubCollection = "messages";
 
 // User
 

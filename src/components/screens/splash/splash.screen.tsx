@@ -1,16 +1,16 @@
-import {GetLottie} from 'components/basic/lottie';
-import React, {useCallback, useEffect} from 'react';
-import {StyleSheet} from 'react-native';
+import { GetLottie } from "components/basic/lottie";
+import React, { useCallback, useEffect } from "react";
+import { StyleSheet } from "react-native";
 import Animated, {
   Easing,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from 'react-native-reanimated';
-import {useAppThemeColors, useSetAppshowSplashScreen} from 'state/appState';
-import {Consts, LottieFiles, normalizeWidth} from 'utils/globalStyles';
-import {wait} from 'utils/helpers';
+} from "react-native-reanimated";
+import { useAppThemeColors, useSetAppshowSplashScreen } from "state/appState";
+import { Consts, LottieFiles, normalizeWidth } from "utils/globalStyles";
+import { wait } from "utils/helpers";
 
 const IconfadeInDuration = 300;
 
@@ -22,11 +22,11 @@ export const SplashScreen = () => {
   const iconOpacity = useSharedValue(0);
 
   const hideSplashScreen = useCallback(async () => {
-    await wait(1000);
+    await wait(2000);
     fade.value = withTiming(
       0,
-      {duration: 200},
-      isFinished => isFinished && runOnJS(setShowSplash)(false),
+      { duration: 200 },
+      (isFinished) => isFinished && runOnJS(setShowSplash)(false)
     );
   }, [fade, setShowSplash]);
 
@@ -61,9 +61,10 @@ export const SplashScreen = () => {
     <Animated.View
       style={[
         styles.splashContainer,
-        {backgroundColor: appColors.PrimaryBG},
+        { backgroundColor: appColors.PrimaryBG },
         fadeStyle,
-      ]}>
+      ]}
+    >
       {/* <Animated.View style={iconStyle}> */}
       <GetLottie
         source={LottieFiles.AVATAR}
@@ -84,8 +85,8 @@ export const styles = StyleSheet.create({
     width: Consts.screenWidth,
     height: Consts.windowHeight,
     zIndex: 100,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

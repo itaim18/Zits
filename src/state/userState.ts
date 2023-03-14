@@ -1,19 +1,19 @@
-import ReactNativeRecoilPersist from 'react-native-recoil-persist';
+import ReactNativeRecoilPersist from "react-native-recoil-persist";
 import {
   atom,
   AtomEffect,
   selector,
   useRecoilValue,
   useSetRecoilState,
-} from 'recoil';
-import {FirebaseUser, User} from 'utils/types';
+} from "recoil";
+import { FirebaseUser, User } from "utils/types";
 
 const persistAtom = ReactNativeRecoilPersist.persistAtom;
 
 // isLoggedIn
 export const isLoggedIn = atom({
-  key: 'isLoggedIn',
-  default: false,
+  key: "isLoggedIn",
+  default: true,
 });
 
 export const useUserIsLoggedIn = () => useRecoilValue(isLoggedIn);
@@ -21,7 +21,7 @@ export const useSetUserIsLoggedIn = () => useSetRecoilState(isLoggedIn);
 
 // firebaseUser
 export const firebaseUser = atom({
-  key: 'firebaseUser',
+  key: "firebaseUser",
   default: null as FirebaseUser | null,
 });
 
@@ -34,7 +34,7 @@ export const emptyUser: User = {
 };
 // user
 export const user = atom({
-  key: 'user',
+  key: "user",
   default: emptyUser,
   effects_UNSTABLE: [persistAtom as AtomEffect<User | undefined>],
 });
@@ -44,8 +44,8 @@ export const useSetUser = () => useSetRecoilState(user);
 
 // userName
 const userName = selector({
-  key: 'userName',
-  get: ({get}) => {
+  key: "userName",
+  get: ({ get }) => {
     const userState = get(user);
 
     return userState?.name;
@@ -56,11 +56,11 @@ export const useUserName = () => useRecoilValue(userName);
 
 // userPhotos
 const userPhotos = selector({
-  key: 'userPhotos',
-  get: ({get}) => {
+  key: "userPhotos",
+  get: ({ get }) => {
     const userState = get(user);
 
-    return userState?.photos?.filter(p => !!p);
+    return userState?.photos?.filter((p) => !!p);
   },
 });
 
@@ -68,8 +68,8 @@ export const useUserPhotos = () => useRecoilValue(userPhotos);
 
 // userUid
 const userUid = selector({
-  key: 'userUid',
-  get: ({get}) => {
+  key: "userUid",
+  get: ({ get }) => {
     const userState = get(user);
 
     return userState?.uid;
