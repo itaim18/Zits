@@ -23,7 +23,10 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
-export const LoginButtons = () => {
+import { useAppNavigation } from "hooks/common.hooks";
+
+export const LoginButtons = ({ continueLogin }) => {
+  const { navigate } = useAppNavigation();
   const setUserIsLoggedIn = useSetUserIsLoggedIn();
   const recaptchaVerifier = React.useRef(null);
   const [phoneNumber, setPhoneNumber] = React.useState("");
@@ -58,7 +61,7 @@ export const LoginButtons = () => {
       .signInWithCredential(credential)
       .then(() => {
         setValue("");
-        setUserIsLoggedIn(true);
+        navigate("LoginChoose");
       })
       .catch((err) => alert(err));
 
