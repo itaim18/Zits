@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Text,
   Alert,
+  StyleSheet,
 } from "react-native";
 import { useAppThemeColors } from "state/appState";
 import { GS } from "utils/globalStyles";
@@ -16,14 +17,26 @@ import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "firebase/compat/app";
 import { firebaseConfig } from "../../../../firebaseConfig";
 import { useSetUserIsLoggedIn } from "state/userState";
-
+import {
+  CodeField,
+  Cursor,
+  useBlurOnFulfill,
+  useClearByFocusCell,
+} from "react-native-confirmation-code-field";
 export const LoginButtons = () => {
   const setUserIsLoggedIn = useSetUserIsLoggedIn();
   const recaptchaVerifier = React.useRef(null);
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [verificationId, setVerificationId] = React.useState("");
-  const [verificationCode, setVerificationCode] = React.useState("");
+  const [value, setValue] = React.useState("");
   const [showCode, setShowCode] = React.useState(false);
+
+  const ref = useBlurOnFulfill({ value, cellCount: 6 });
+  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+    value,
+    setValue,
+  });
+
   const sendVerification = () => {
     const toggleCodeInput = () => {
       setShowCode((prevState) => !prevState);
@@ -38,14 +51,17 @@ export const LoginButtons = () => {
   const confirmCode = () => {
     const credential = firebase.auth.PhoneAuthProvider.credential(
       verificationId,
-      verificationCode
+      value
     );
     firebase
       .auth()
       .signInWithCredential(credential)
-      .then(() => setVerificationCode(""))
+      .then(() => {
+        setValue("");
+        setUserIsLoggedIn(true);
+      })
       .catch((err) => alert(err));
-    setUserIsLoggedIn(true);
+
     Alert.alert("Login successful. welcome to elder-helper!");
   };
 
@@ -70,12 +86,33 @@ export const LoginButtons = () => {
       )}
       {showCode && (
         <>
-          <TextInput
+          <CodeField
+            ref={ref}
+            {...props}
+            // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
+            value={value}
+            onChangeText={setValue}
+            cellCount={6}
+            rootStyle={styles.codeFieldRoot}
+            keyboardType="number-pad"
+            textContentType="oneTimeCode"
+            renderCell={({ index, symbol, isFocused }) => (
+              <Text
+                key={index}
+                style={[styles.cell, isFocused && styles.focusCell]}
+                onLayout={getCellOnLayoutHandler(index)}
+              >
+                {symbol || (isFocused ? <Cursor /> : null)}
+              </Text>
+            )}
+          />
+          {/* <TextInput
             placeholder="code"
             onChangeText={setVerificationCode}
             keyboardType="number-pad"
             autoComplete="tel"
-          />
+          /> */}
+
           <TouchableOpacity onPress={confirmCode}>
             <Text>complete sign up</Text>
           </TouchableOpacity>
@@ -127,3 +164,20 @@ const LoginButton = ({
     </ButtonOpacity>
   );
 };
+const styles = StyleSheet.create({
+  root: { flex: 1, padding: 20 },
+  title: { textAlign: "center", fontSize: 30 },
+  codeFieldRoot: { marginTop: 20 },
+  cell: {
+    width: 40,
+    height: 40,
+    lineHeight: 38,
+    fontSize: 24,
+    borderWidth: 2,
+    borderColor: "#00000030",
+    textAlign: "center",
+  },
+  focusCell: {
+    borderColor: "#000",
+  },
+});
