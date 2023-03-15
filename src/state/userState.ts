@@ -13,7 +13,7 @@ const persistAtom = ReactNativeRecoilPersist.persistAtom;
 // isLoggedIn
 export const isLoggedIn = atom({
   key: "isLoggedIn",
-  default: true,
+  default: false,
 });
 
 export const useUserIsLoggedIn = () => useRecoilValue(isLoggedIn);

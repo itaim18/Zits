@@ -1,29 +1,84 @@
 import { ButtonOpacity } from "components/basic/buttons";
 import { AppText } from "components/basic/texts";
-import { useLogin } from "hooks/useLogin.hook";
 import React from "react";
-import { ActivityIndicator, View } from "react-native";
+import {
+  ActivityIndicator,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  Alert,
+} from "react-native";
 import { useAppThemeColors } from "state/appState";
 import { GS } from "utils/globalStyles";
 import { Strings } from "utils/strings";
+import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
+import firebase from "firebase/compat/app";
+import { firebaseConfig } from "../../../../firebaseConfig";
 
 export const LoginButtons = () => {
-  const { loginGoogle, isLoading } = useLogin();
+  const recaptchaVerifier = React.useRef(null);
+  const [phoneNumber, setPhoneNumber] = React.useState("");
+  const [verificationId, setVerificationId] = React.useState("");
+  const [verificationCode, setVerificationCode] = React.useState("");
+  const [showCode, setShowCode] = React.useState(false);
+  const sendVerification = () => {
+    const toggleCodeInput = () => {
+      setShowCode((prevState) => !prevState);
+    };
+    const phoneProvider = new firebase.auth.PhoneAuthProvider();
+    console.log("hey there");
+    phoneProvider
+      .verifyPhoneNumber(phoneNumber, recaptchaVerifier.current)
+      .then(setVerificationId);
+    setPhoneNumber("");
+    toggleCodeInput();
+  };
+  const confirmCode = () => {
+    const credential = firebase.auth.PhoneAuthProvider.credential(
+      verificationId,
+      verificationCode
+    );
+    firebase
+      .auth()
+      .signInWithCredential(credential)
+      .then(() => setVerificationCode(""))
+      .catch((err) => alert(err));
+    Alert.alert("Login successful. welcome to elder-helper!");
+  };
 
   return (
     <View style={[GS.marginTop64, GS.fullWidth]}>
-      <LoginButton
-        text={Strings.screens.login.googleLogin}
-        onPress={loginGoogle}
-        // icon={"GOOGLE"}
-        loading={isLoading}
-        disabled={isLoading}
+      <FirebaseRecaptchaVerifierModal
+        ref={recaptchaVerifier}
+        firebaseConfig={firebaseConfig}
       />
-      {/* <LoginButton
-        text={Strings.appleLogin}
-        onPress={loginGoogle}
-        icon={'APPLE'}
-      /> */}
+      {!showCode && (
+        <>
+          <TextInput
+            placeholder="phone"
+            onChangeText={setPhoneNumber}
+            keyboardType="phone-pad"
+            autoComplete="tel"
+          />
+          <TouchableOpacity onPress={sendVerification}>
+            <Text>send code</Text>
+          </TouchableOpacity>
+        </>
+      )}
+      {showCode && (
+        <>
+          <TextInput
+            placeholder="code"
+            onChangeText={setVerificationCode}
+            keyboardType="number-pad"
+            autoComplete="tel"
+          />
+          <TouchableOpacity onPress={confirmCode}>
+            <Text>complete sign up</Text>
+          </TouchableOpacity>
+        </>
+      )}
     </View>
   );
 };
