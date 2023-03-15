@@ -15,8 +15,10 @@ import { Strings } from "utils/strings";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "firebase/compat/app";
 import { firebaseConfig } from "../../../../firebaseConfig";
+import { useSetUserIsLoggedIn } from "state/userState";
 
 export const LoginButtons = () => {
+  const setUserIsLoggedIn = useSetUserIsLoggedIn();
   const recaptchaVerifier = React.useRef(null);
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [verificationId, setVerificationId] = React.useState("");
@@ -27,7 +29,6 @@ export const LoginButtons = () => {
       setShowCode((prevState) => !prevState);
     };
     const phoneProvider = new firebase.auth.PhoneAuthProvider();
-    console.log("hey there");
     phoneProvider
       .verifyPhoneNumber(phoneNumber, recaptchaVerifier.current)
       .then(setVerificationId);
@@ -44,6 +45,7 @@ export const LoginButtons = () => {
       .signInWithCredential(credential)
       .then(() => setVerificationCode(""))
       .catch((err) => alert(err));
+    setUserIsLoggedIn(true);
     Alert.alert("Login successful. welcome to elder-helper!");
   };
 
