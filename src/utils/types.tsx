@@ -50,6 +50,7 @@ export type RootStackParamList = {
   Mitnadvim: undefined;
   Login: undefined;
   LoginChoose: undefined;
+  Signup: undefined;
   ["AppTransparentModal"]: {
     type: TransparentModals;
     withDelete?: boolean;

@@ -11,6 +11,7 @@ export const Strings = {
     login: {
       letsGetYouIn: "Let's get you in",
       googleLogin: 'Continue with google',
+      loginChoose: "Decide upon yourself"
     },
     settings: {
       title: 'Settings',

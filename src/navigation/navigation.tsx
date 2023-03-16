@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HomeScreen } from "components/screens/home/home.screen";
 import { Login } from "components/screens/login/login.screen";
 import { LoginChoose } from "components/screens/loginChoose/loginChoose.screen";
+import { Signup } from "components/screens/Signup/Signup.screen";
 import { SettingsScreen } from "components/screens/settings/settings.screen";
 import {
   useAppIsDarkMode,
@@ -22,6 +23,10 @@ import { AppTransparentModal } from "modals/appModal";
 import React from "react";
 import { StatusBar } from "react-native";
 import { SCREENS } from "utils/enums";
+
+
+
+
 const Stack = createNativeStackNavigator();
 
 export const Navigation = () => {
@@ -74,7 +79,7 @@ export const Navigation = () => {
           <Stack.Group>
             <Stack.Screen name={SCREENS.Login} component={Login} />
             <Stack.Screen name={SCREENS.LoginChoose} component={LoginChoose} />
-            {/* <Stack.Screen name={SCREENS.Login} component={Login} /> */}
+            <Stack.Screen name={SCREENS.Signup} component={Signup} />
           </Stack.Group>
         )}
         <Stack.Group screenOptions={{ presentation: "transparentModal" }}>

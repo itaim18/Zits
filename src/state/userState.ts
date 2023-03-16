@@ -19,6 +19,13 @@ export const isLoggedIn = atom({
 export const useUserIsLoggedIn = () => useRecoilValue(isLoggedIn);
 export const useSetUserIsLoggedIn = () => useSetRecoilState(isLoggedIn);
 
+export const userType = atom({
+  key: "userType",
+  default: "global",
+});
+
+export const useUserType = () => useRecoilValue(userType);
+export const useSetUserType = () => useSetRecoilState(userType);
 // firebaseUser
 export const firebaseUser = atom({
   key: "firebaseUser",
