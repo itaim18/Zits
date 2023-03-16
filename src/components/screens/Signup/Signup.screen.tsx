@@ -22,6 +22,13 @@ export const Signup = () => {
       } catch (e) {
         console.error("Error adding document: ", e);
       }
+    } else if (userType === "survivor") {
+      try {
+        const docRef = await addDoc(collection(db, "survivors"), user);
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
     }
   };
   return <LoginCard handleSubmitForm={handleRegister} />;
