@@ -1,4 +1,4 @@
-import React, {ReactNode, RefObject} from 'react';
+import React, { ReactNode, RefObject } from "react";
 import {
   StyleProp,
   StyleSheet,
@@ -6,15 +6,15 @@ import {
   TextProps,
   TextStyle,
   View,
-} from 'react-native';
+} from "react-native";
 import Animated, {
   AnimatedStyleProp,
   SharedValue,
   useAnimatedProps,
-} from 'react-native-reanimated';
-import {useAppThemeColors} from 'state/appState';
-import {GS, normalizeHeight, normalizeWidth} from 'utils/globalStyles';
-import {ColorKeys} from 'utils/types';
+} from "react-native-reanimated";
+import { useAppThemeColors } from "state/appState";
+import { GS, normalizeHeight, normalizeWidth } from "utils/globalStyles";
+import { ColorKeys } from "utils/types";
 
 export interface AppTextProps extends TextProps {
   children: ReactNode;
@@ -25,7 +25,7 @@ export interface AppTextProps extends TextProps {
   isDark?: boolean;
 }
 
-export const AppTextHeader = ({children, style}: AppTextProps) => {
+export const AppTextHeader = ({ children, style }: AppTextProps) => {
   return (
     <AppText style={[GS.textAlignCenter, GS.bold, GS.text28, style]}>
       {children}
@@ -43,7 +43,8 @@ export const AppTextSubHeader = ({
     <AppText
       isDark={isDark}
       style={[GS.textAlignCenter, GS.weight500, GS.text22, style]}
-      {...props}>
+      {...props}
+    >
       {children}
     </AppText>
   );
@@ -73,7 +74,8 @@ export const AppText = ({
         },
         style,
         animatedStyle,
-      ]}>
+      ]}
+    >
       {children}
     </Animated.Text>
   );
@@ -86,6 +88,7 @@ type AppInputProps = {
   style?: StyleProp<TextStyle>;
   autoFocus?: boolean;
   errorMess?: string;
+  placeholder?: string;
 };
 
 export const AppInput = ({
@@ -93,8 +96,9 @@ export const AppInput = ({
   value,
   setValue,
   style,
+  placeholder,
   autoFocus,
-  errorMess = '',
+  errorMess = "",
 }: AppInputProps) => {
   const appColors = useAppThemeColors();
   return (
@@ -105,7 +109,7 @@ export const AppInput = ({
           GS.removeFontPadding,
           GS.text18,
           styles.input,
-          {color: appColors.DarkText, borderColor: appColors.DarkText},
+          { color: appColors.DarkText, borderColor: appColors.DarkText },
           style,
         ]}
         autoFocus={autoFocus}
@@ -113,7 +117,7 @@ export const AppInput = ({
         value={value}
         onChangeText={setValue}
         placeholderTextColor={appColors.SecondaryLightText}
-        placeholder="Name"
+        placeholder={placeholder}
       />
       <AppText color="Error" style={[GS.marginLeft8, styles.errMsg]}>
         {errorMess}
@@ -129,7 +133,7 @@ export interface LabelProps {
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
-export const AnimatedText = ({text}: {text: SharedValue<string>}) => {
+export const AnimatedText = ({ text }: { text: SharedValue<string> }) => {
   const animatedProps = useAnimatedProps(() => {
     return {
       text: text.value,
@@ -149,7 +153,7 @@ export const AnimatedText = ({text}: {text: SharedValue<string>}) => {
 
 const styles = StyleSheet.create({
   inputWrap: {
-    width: '80%',
+    width: "80%",
   },
   input: {
     paddingHorizontal: normalizeWidth(12),
@@ -158,6 +162,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   errMsg: {
-    textAlign: 'left',
+    textAlign: "left",
   },
 });

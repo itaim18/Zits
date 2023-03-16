@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { useAppThemeColors } from "state/appState";
 import { GS } from "utils/globalStyles";
+
 import { Strings } from "utils/strings";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "firebase/compat/app";
@@ -27,7 +28,6 @@ import { useAppNavigation } from "hooks/common.hooks";
 
 export const LoginButtons = ({ continueLogin }) => {
   const { navigate } = useAppNavigation();
-  const setUserIsLoggedIn = useSetUserIsLoggedIn();
   const recaptchaVerifier = React.useRef(null);
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [verificationId, setVerificationId] = React.useState("");
@@ -109,12 +109,6 @@ export const LoginButtons = ({ continueLogin }) => {
               </Text>
             )}
           />
-          {/* <TextInput
-            placeholder="code"
-            onChangeText={setVerificationCode}
-            keyboardType="number-pad"
-            autoComplete="tel"
-          /> */}
 
           <TouchableOpacity onPress={confirmCode}>
             <Text>complete sign up</Text>

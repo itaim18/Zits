@@ -1,11 +1,11 @@
 import {useEffect} from 'react';
 import {useAppIsDarkMode, useAppThemeName} from 'state/appState';
-import {useUserIsLoggedIn} from 'state/userState';
+import {useUserIsLoggedIn, useUserType} from 'state/userState';
 
 export const LogStateUpdates = () => {
   const isDarkMode = useAppIsDarkMode();
   const themeName = useAppThemeName();
-
+const userType = useUserType();
   const isUserLoggedIn = useUserIsLoggedIn();
 
   useEffect(() => {
@@ -19,6 +19,8 @@ export const LogStateUpdates = () => {
   useEffect(() => {
     console.log('Recoil AppState (isUserLoggedIn):', isUserLoggedIn);
   }, [isUserLoggedIn]);
-
+  useEffect(() => {
+    console.log('Recoil AppState (isUserLoggedIn):', userType);
+  }, [userType]);
   return null;
 };

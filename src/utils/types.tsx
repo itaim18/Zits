@@ -51,6 +51,7 @@ export type RootStackParamList = {
   Login: undefined;
   LoginChoose: undefined;
   Signup: undefined;
+  Signin: undefined;
   ["AppTransparentModal"]: {
     type: TransparentModals;
     withDelete?: boolean;
@@ -110,12 +111,19 @@ export type SubCollection = "messages";
 // User
 
 export type User = {
-  name?: string;
-  photos: string[];
+  name: string;
   uid?: string;
-  isOnline: boolean;
+  idNumber?: string;
   email?: string;
-  // fcmToken: string | null;
-  creationTime?: string;
-  lastSignInTime?: string;
+  address?: string;
+  city?: string;
+  /**
+   * default: "global"
+   * */
+  userType: string;
+  createdAt?: string;
+  languages?: string[];
+  tel?: string;
+  image?: string;
+  birth?: string;
 };

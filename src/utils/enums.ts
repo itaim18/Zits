@@ -4,7 +4,8 @@ export enum SCREENS {
   Mitnadvim = "Mitnadvim",
   Login = "Login",
   LoginChoose = "LoginChoose",
-  Signup = "Signup"
+  Signup = "Signup",
+  Signin = "Signin",
 }
 
 export enum TEXT_OPTION {

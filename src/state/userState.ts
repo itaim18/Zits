@@ -36,8 +36,10 @@ export const useUserFirebase = () => useRecoilValue(firebaseUser);
 export const useSetUserFirebase = () => useSetRecoilState(firebaseUser);
 
 export const emptyUser: User = {
-  photos: [],
-  isOnline: false,
+  userType: "global",
+  name: "userKing",
+  address: "Yitzhak Sadeh St 6",
+  city: "Tel Aviv-Yafo",
 };
 // user
 export const user = atom({
@@ -62,16 +64,16 @@ const userName = selector({
 export const useUserName = () => useRecoilValue(userName);
 
 // userPhotos
-const userPhotos = selector({
-  key: "userPhotos",
-  get: ({ get }) => {
-    const userState = get(user);
+// const userPhotos = selector({
+//   key: "userPhotos",
+//   get: ({ get }) => {
+//     const userState = get(user);
 
-    return userState?.photos?.filter((p) => !!p);
-  },
-});
+//     return userState?.photos?.filter((p) => !!p);
+//   },
+// });
 
-export const useUserPhotos = () => useRecoilValue(userPhotos);
+// export const useUserPhotos = () => useRecoilValue(userPhotos);
 
 // userUid
 const userUid = selector({
