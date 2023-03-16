@@ -26,6 +26,15 @@ export const userType = atom({
 
 export const useUserType = () => useRecoilValue(userType);
 export const useSetUserType = () => useSetRecoilState(userType);
+
+export const userTel = atom({
+  key: "userTel",
+  default: "+972544978899",
+});
+
+export const useUserTel = () => useRecoilValue(userTel);
+export const useSetUserTel = () => useSetRecoilState(userTel);
+// firebaseUser
 // firebaseUser
 export const firebaseUser = atom({
   key: "firebaseUser",
@@ -63,19 +72,6 @@ const userName = selector({
 
 export const useUserName = () => useRecoilValue(userName);
 
-// userPhotos
-// const userPhotos = selector({
-//   key: "userPhotos",
-//   get: ({ get }) => {
-//     const userState = get(user);
-
-//     return userState?.photos?.filter((p) => !!p);
-//   },
-// });
-
-// export const useUserPhotos = () => useRecoilValue(userPhotos);
-
-// userUid
 const userUid = selector({
   key: "userUid",
   get: ({ get }) => {

@@ -24,7 +24,10 @@ import { AppTransparentModal } from "modals/appModal";
 import React from "react";
 import { StatusBar } from "react-native";
 import { SCREENS } from "utils/enums";
+import LoginStack from "./loginStack.Screen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export const Navigation = () => {
@@ -58,36 +61,31 @@ export const Navigation = () => {
         backgroundColor={"transparent"}
         translucent
       />
-      <Stack.Navigator
+      {/* <Stack.Navigator
         screenOptions={{
           headerShown: false,
           animation: "slide_from_right",
         }}
-      >
-        {isLoggedIn ? (
-          <Stack.Group>
-            <Stack.Screen name={SCREENS.Home} component={HomeScreen} />
-            <Stack.Screen
-              name={SCREENS.Mitnadvim}
-              component={MitnadvimScreen}
-            />
-            <Stack.Screen name={SCREENS.Settings} component={SettingsScreen} />
-          </Stack.Group>
-        ) : (
-          <Stack.Group>
-            <Stack.Screen name={SCREENS.Login} component={Login} />
-            <Stack.Screen name={SCREENS.LoginChoose} component={LoginChoose} />
-            <Stack.Screen name={SCREENS.Signup} component={Signup} />
-            <Stack.Screen name={SCREENS.Signin} component={Signin} />
-          </Stack.Group>
-        )}
-        <Stack.Group screenOptions={{ presentation: "transparentModal" }}>
+      > */}
+
+      {isLoggedIn ? (
+        <Tab.Navigator>
+          <Tab.Group>
+            <Tab.Screen name={SCREENS.Home} component={HomeScreen} />
+            <Tab.Screen name={SCREENS.Mitnadvim} component={MitnadvimScreen} />
+            <Tab.Screen name={SCREENS.Settings} component={SettingsScreen} />
+          </Tab.Group>
+        </Tab.Navigator>
+      ) : (
+        <LoginStack />
+      )}
+      {/* <Stack.Group screenOptions={{ presentation: "transparentModal" }}>
           <Stack.Screen
             name={"AppTransparentModal"}
             component={AppTransparentModal}
           />
-        </Stack.Group>
-      </Stack.Navigator>
+        </Stack.Group> */}
+      {/* </Stack.Navigator> */}
     </NavigationContainer>
   );
 };

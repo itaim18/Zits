@@ -55,7 +55,7 @@ export type RootStackParamList = {
   ["AppTransparentModal"]: {
     type: TransparentModals;
     withDelete?: boolean;
-    photoNumber?: number;
+    
   };
 };
 

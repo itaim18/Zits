@@ -12,12 +12,12 @@ import {
 } from "react-native";
 import { useAppThemeColors } from "state/appState";
 import { GS } from "utils/globalStyles";
-
+import { useSetUser } from "state/userState";
 import { Strings } from "utils/strings";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "firebase/compat/app";
 import { firebaseConfig } from "../../../../firebaseConfig";
-import { useSetUserIsLoggedIn } from "state/userState";
+import { useSetUserTel } from "state/userState";
 import {
   CodeField,
   Cursor,
@@ -27,6 +27,7 @@ import {
 import { useAppNavigation } from "hooks/common.hooks";
 
 export const LoginButtons = ({ continueLogin }) => {
+  const setUserTel = useSetUserTel();
   const { navigate } = useAppNavigation();
   const recaptchaVerifier = React.useRef(null);
   const [phoneNumber, setPhoneNumber] = React.useState("");
@@ -48,6 +49,7 @@ export const LoginButtons = ({ continueLogin }) => {
     phoneProvider
       .verifyPhoneNumber(phoneNumber, recaptchaVerifier.current)
       .then(setVerificationId);
+    setUserTel(phoneNumber);
     setPhoneNumber("");
     toggleCodeInput();
   };

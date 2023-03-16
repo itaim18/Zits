@@ -2,30 +2,40 @@ import React from "react";
 import { View } from "react-native";
 import { GS } from "utils/globalStyles";
 import { AppInput, AppText } from "./texts";
-import { useUserType } from "state/userState";
+import { useUser, useUserType } from "state/userState";
 import { AppButton } from "./buttons";
-import { useSetUser } from "state/userState";
+import { useSetUser, useUserTel } from "state/userState";
 type LoginCardProps = {
   handleSubmitForm: any;
 };
 
 export const LoginCard = ({ handleSubmitForm }: LoginCardProps) => {
-  const setuser = useSetUser();
+  const userTel = useUserTel();
+  const setUser = useSetUser();
+
   const userType = useUserType();
   const nameRef = React.useRef();
   const idNumberRef = React.useRef();
-  const telRef = React.useRef();
   const addressRef = React.useRef();
   const birthRef = React.useRef();
 
   const [name, setName] = React.useState("");
   const [idNumber, setIdNumber] = React.useState("");
   const [address, setAddress] = React.useState("");
-  const [tel, setTel] = React.useState("");
+
   const [birth, setBirth] = React.useState("");
-  const handleSubmit = (name, idNumber, address, tel, birth) => {
-    setuser({ name, idNumber, address, tel, birth, userType });
-    handleSubmitForm();
+  const handleSubmit = async (name, idNumber, address, birth) => {
+    await setUser({ name, idNumber, address, birth, userType, tel: userTel });
+    await handleSubmitForm({
+      user: {
+        name,
+        idNumber,
+        address,
+        birth,
+        userType,
+        tel: userTel,
+      },
+    });
   };
   return (
     <View style={[GS.center, GS.flexOne]}>
@@ -49,12 +59,7 @@ export const LoginCard = ({ handleSubmitForm }: LoginCardProps) => {
         inputRef={addressRef}
         setValue={setAddress}
       />
-      <AppInput
-        placeholder="tel number"
-        value={tel}
-        inputRef={telRef}
-        setValue={setTel}
-      />
+
       <AppInput
         placeholder="birth date"
         value={birth}
@@ -63,7 +68,7 @@ export const LoginCard = ({ handleSubmitForm }: LoginCardProps) => {
       />
       <AppButton
         text="submit"
-        onPress={() => handleSubmit(name, idNumber, address, tel, birth)}
+        onPress={() => handleSubmit(name, idNumber, address, birth)}
       />
     </View>
   );

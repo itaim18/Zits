@@ -33,20 +33,6 @@ export const SettingsScreen = () => {
 
   return (
     <ScreenView style={[GS.alignCenter]} dimissKeyboardOnTouch>
-      {/* {user.photos[0] && (
-        <AppAvatar
-          uri={user.photos[0]}
-          style={[
-            {
-              width: userAvatarSize,
-              height: userAvatarSize,
-              borderRadius: userAvatarSize / 2,
-            },
-            GS.marginTop16,
-            styles.avatar,
-          ]}
-        />
-      )} */}
       <AppButton style={[GS.marginTop32]} text="Home" onPress={goHome} />
       <AppButton style={[GS.marginTop16]} text="Logout" onPress={logoutUser} />
       <Switch
