@@ -36,7 +36,7 @@ export const useSetAppIsInitializing = () =>
 // isDarkMode
 export const isDarkMode = atom({
   key: "isDarkMode",
-  default: (colorScheme === "dark") as boolean,
+  default: false as boolean,
   effects_UNSTABLE: [persistAtom as AtomEffect<boolean>],
 });
 

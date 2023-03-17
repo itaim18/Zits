@@ -6,6 +6,14 @@ export enum SCREENS {
   LoginChoose = "LoginChoose",
   Signup = "Signup",
   Signin = "Signin",
+  Start = "Start",
+  Help = "Help",
+  Record = "Record",
+  Finish = "Finish",
+  Logs = "Logs",
+  Community = "Community",
+  Profile = "Profile",
+  Donate = "Donate",
 }
 
 export enum TEXT_OPTION {

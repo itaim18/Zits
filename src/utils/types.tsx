@@ -52,10 +52,17 @@ export type RootStackParamList = {
   LoginChoose: undefined;
   Signup: undefined;
   Signin: undefined;
+  Start: undefined;
+  Help: undefined;
+  Record: undefined;
+  Finish: undefined;
+  Logs: undefined;
+  Community: undefined;
+  Profile: undefined;
+  Donate: undefined;
   ["AppTransparentModal"]: {
     type: TransparentModals;
     withDelete?: boolean;
-    
   };
 };
 

@@ -5,12 +5,11 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import {AppTransparentModal} from 'components/modals/appModal';
-import { HomeScreen } from "components/screens/home/home.screen";
-import { Login } from "components/screens/login/login.screen";
-import { LoginChoose } from "components/screens/loginChoose/loginChoose.screen";
-import { Signin } from "components/screens/Signin/Signin.screen";
-import { Signup } from "components/screens/Signup/Signup.screen";
+import { Donate } from "components/screens/home/donate.screen";
+import { Profile } from "components/screens/home/Profile.screen";
+import { StartScreen } from "components/screens/home/start.screen";
 import { SettingsScreen } from "components/screens/settings/settings.screen";
+import { Community } from "components/screens/home/community.screen";
 import {
   useAppIsDarkMode,
   useAppShowSplashScreen,
@@ -21,20 +20,24 @@ import { useUserIsLoggedIn } from "state/userState";
 import { MitnadvimScreen } from "components/screens/mitnadvim/mitnadvim.screen";
 import { SplashScreen } from "components/screens/splash/splash.screen";
 import { AppTransparentModal } from "modals/appModal";
+import { useUserType } from "state/userState";
 import React from "react";
 import { StatusBar } from "react-native";
 import { SCREENS } from "utils/enums";
 import LoginStack from "./loginStack.Screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import { HelpScreen } from "components/screens/home/help.screen";
+import { RecordScreen } from "components/screens/home/record.screen";
+import { LogsScreen } from "components/screens/home/logs.screen";
+import { FinishScreen } from "components/screens/home/finish.screen";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export const Navigation = () => {
+  const userType = useUserType();
   const appColors = useAppThemeColors();
   const showSplash = useAppShowSplashScreen();
   const isLoggedIn = useUserIsLoggedIn();
-  const isDarkMode = useAppIsDarkMode();
 
   // useAppAuth();
 
@@ -44,48 +47,44 @@ export const Navigation = () => {
 
   return (
     <NavigationContainer
-      theme={
-        isDarkMode
-          ? DarkTheme
-          : {
-              ...DefaultTheme,
-              colors: {
-                ...DefaultTheme.colors,
-                background: appColors.PrimaryBG,
-              },
-            }
-      }
+      theme={{
+        ...DefaultTheme,
+        colors: {
+          ...DefaultTheme.colors,
+          background: appColors.PrimaryBG,
+        },
+      }}
     >
       <StatusBar
-        barStyle={isDarkMode ? "light-content" : "dark-content"}
+        barStyle={"dark-content"}
         backgroundColor={"transparent"}
         translucent
       />
-      {/* <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          animation: "slide_from_right",
-        }}
-      > */}
 
       {isLoggedIn ? (
-        <Tab.Navigator>
-          <Tab.Group>
-            <Tab.Screen name={SCREENS.Home} component={HomeScreen} />
-            <Tab.Screen name={SCREENS.Mitnadvim} component={MitnadvimScreen} />
-            <Tab.Screen name={SCREENS.Settings} component={SettingsScreen} />
-          </Tab.Group>
-        </Tab.Navigator>
+        userType === "survivor" ? (
+          <Stack.Navigator>
+            <Stack.Group>
+              <Stack.Screen name={SCREENS.Start} component={StartScreen} />
+              <Stack.Screen name={SCREENS.Help} component={HelpScreen} />
+              {/* <Stack.Screen name={SCREENS.Settings} component={SettingsScreen} /> */}
+              <Stack.Screen name={SCREENS.Finish} component={FinishScreen} />
+              <Stack.Screen name={SCREENS.Record} component={RecordScreen} />
+            </Stack.Group>
+          </Stack.Navigator>
+        ) : (
+          <Tab.Navigator>
+            <Tab.Group>
+              <Tab.Screen name={SCREENS.Logs} component={LogsScreen} />
+              <Tab.Screen name={SCREENS.Community} component={Community} />
+              <Tab.Screen name={SCREENS.Profile} component={Profile} />
+              <Tab.Screen name={SCREENS.Donate} component={Donate} />
+            </Tab.Group>
+          </Tab.Navigator>
+        )
       ) : (
         <LoginStack />
       )}
-      {/* <Stack.Group screenOptions={{ presentation: "transparentModal" }}>
-          <Stack.Screen
-            name={"AppTransparentModal"}
-            component={AppTransparentModal}
-          />
-        </Stack.Group> */}
-      {/* </Stack.Navigator> */}
     </NavigationContainer>
   );
 };
