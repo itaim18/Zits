@@ -42,7 +42,14 @@ export const isDarkMode = atom({
 
 export const useAppIsDarkMode = () => useRecoilValue(isDarkMode);
 export const useSetAppIsDarkMode = () => useSetRecoilState(isDarkMode);
+export const token = atom({
+  key: "token",
+  default: "",
+  effects_UNSTABLE: [persistAtom as AtomEffect<string>],
+});
 
+export const useAppToken = () => useRecoilValue(token);
+export const useSetAppToken = () => useSetRecoilState(token);
 // themeName
 export const themeName = atom({
   key: "themeName",

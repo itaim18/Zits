@@ -34,7 +34,7 @@ export const userTel = atom({
 
 export const useUserTel = () => useRecoilValue(userTel);
 export const useSetUserTel = () => useSetRecoilState(userTel);
-// firebaseUser
+
 // firebaseUser
 export const firebaseUser = atom({
   key: "firebaseUser",
