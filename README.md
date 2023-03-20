@@ -1,4 +1,4 @@
-# 👵 🤝 🧑  Elder-Helper
+# 👵 🤝 🧑  Zits
 
 ### An application that connects between holocaust survivors and volunteers from all around the world in a click of a button
 
