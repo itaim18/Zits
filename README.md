@@ -1,6 +1,4 @@
-#   Zits
-
-<img src="https://github.com/itaim18/Zits/blob/master/assets/icon.png" alt="logo" width="180" >
+#   Zits <img src="https://github.com/itaim18/Zits/blob/master/assets/icon.png" alt="logo" width="80" >
 
 ### An application that connects between holocaust survivors and volunteers from all around the world in a click of a button
 
