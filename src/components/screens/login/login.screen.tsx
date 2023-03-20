@@ -1,33 +1,41 @@
 import { GetLottie } from "components/basic/lottie";
-import { AppText, AppTextHeader } from "components/basic/texts";
-import { AppButton } from "components/basic/buttons";
+import { AppText } from "components/basic/texts";
 import { ScreenView } from "components/basic/views";
 import React from "react";
 import { GS, LottieFiles, normalizeWidth } from "utils/globalStyles";
-import { Strings } from "utils/strings";
 import { LoginButtons } from "./loginButtons";
 import { useAppNavigation } from "hooks/common.hooks";
+import { useFonts, Rubik_500Medium } from "@expo-google-fonts/rubik";
+import { Image, View } from "react-native";
 export const Login = () => {
+  let [fontsLoaded] = useFonts({
+    Rubik_500Medium,
+  });
   const { navigate } = useAppNavigation();
   const continueLogin = () => {
     navigate("LoginChoose");
   };
-  const toSignin = () => {
-    navigate("Signin");
-  };
+
   return (
-    <ScreenView style={[GS.alignCenter, GS.center, GS.paddingHorizontal32]}>
-      <AppText style={[GS.bold, GS.text32, GS.marginTop32]}>
-        {Strings.screens.login.letsGetYouIn}
+    <ScreenView
+      style={[GS.center, GS.paddingHorizontal32, { display: "flex" }]}
+    >
+      <AppText
+        style={[
+          GS.bold,
+          GS.text24,
+          GS.marginTop32,
+          { textAlign: "right", fontFamily: "Rubik_500Medium" },
+        ]}
+      >
+        הזן את הטלפון לטובת אימות
       </AppText>
-      <AppTextHeader>Sign Up</AppTextHeader>
+
       <LoginButtons continueLogin={continueLogin} />
-      <AppButton text="Sign In" onPress={toSignin} />
-      <GetLottie
-        wrapStyle={[GS.justifyStart, GS.marginTop64]}
-        source={LottieFiles.WELCOME}
-        height={normalizeWidth(300)}
-        autoPlay
+
+      <Image
+        source={require("assets/images/start.png")}
+        style={{ marginTop: 120 }}
       />
     </ScreenView>
   );

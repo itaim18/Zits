@@ -15,6 +15,8 @@ import Animated, {
 import { useAppThemeColors } from "state/appState";
 import { GS, normalizeHeight, normalizeWidth } from "utils/globalStyles";
 import { ColorKeys } from "utils/types";
+import { useFonts, Rubik_500Medium } from "@expo-google-fonts/rubik";
+import { KeyboardTypeOptions } from "react-native/Libraries/Components/TextInput/TextInput";
 
 export interface AppTextProps extends TextProps {
   children: ReactNode;
@@ -59,26 +61,34 @@ export const AppText = ({
   isDark,
 }: AppTextProps) => {
   const appColors = useAppThemeColors();
-  return (
-    <Animated.Text
-      style={[
-        GS.textAlignCenter,
-        GS.removeFontPadding,
-        isBold && GS.bold,
-        {
-          color: color
-            ? appColors[color]
-            : isDark
-            ? appColors.LightText
-            : appColors.DarkText,
-        },
-        style,
-        animatedStyle,
-      ]}
-    >
-      {children}
-    </Animated.Text>
-  );
+  let [fontsLoaded] = useFonts({
+    Rubik_500Medium,
+  });
+  if (!fontsLoaded) {
+    return <View />;
+  } else {
+    return (
+      <Animated.Text
+        style={[
+          GS.textAlignCenter,
+          GS.removeFontPadding,
+          isBold && GS.bold,
+          {
+            color: color
+              ? appColors[color]
+              : isDark
+              ? appColors.LightText
+              : appColors.DarkText,
+          },
+          style,
+          animatedStyle,
+          { fontFamily: "Rubik_500Medium" },
+        ]}
+      >
+        {children}
+      </Animated.Text>
+    );
+  }
 };
 
 type AppInputProps = {
@@ -89,6 +99,7 @@ type AppInputProps = {
   autoFocus?: boolean;
   errorMess?: string;
   placeholder?: string;
+  keyboardType?: KeyboardTypeOptions;
 };
 
 export const AppInput = ({
@@ -99,6 +110,7 @@ export const AppInput = ({
   placeholder,
   autoFocus,
   errorMess = "",
+  keyboardType = "default",
 }: AppInputProps) => {
   const appColors = useAppThemeColors();
   return (
@@ -118,6 +130,7 @@ export const AppInput = ({
         onChangeText={setValue}
         placeholderTextColor={appColors.SecondaryLightText}
         placeholder={placeholder}
+        keyboardType={keyboardType}
       />
       <AppText color="Error" style={[GS.marginLeft8, styles.errMsg]}>
         {errorMess}

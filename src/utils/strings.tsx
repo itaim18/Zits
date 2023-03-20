@@ -11,8 +11,8 @@ export const Strings = {
     login: {
       letsGetYouIn: "Let's get you in",
       googleLogin: "Continue with google",
-      loginChoose: "Decide upon yourself",
-      signin: "we missed you",
+      loginChoose: "תרים את הכפפה🥊",
+      signin: "התגעגענו...",
     },
     settings: {
       title: "Settings",

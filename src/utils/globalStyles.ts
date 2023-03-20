@@ -4,19 +4,19 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
-} from 'react-native';
+} from "react-native";
 
 const baseScreenWidth = 414; // iPhone 11 - 414x896
 const baseScreenHeight = 896;
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
-const screenHeight = Dimensions.get('screen').height;
-const screenWidth = Dimensions.get('screen').width;
+const screenHeight = Dimensions.get("screen").height;
+const screenWidth = Dimensions.get("screen").width;
 
-const isIos = Platform.OS === 'ios';
-const isAndroid = Platform.OS === 'android';
+const isIos = Platform.OS === "ios";
+const isAndroid = Platform.OS === "android";
 
 const androidMenuHeight =
   StatusBar.currentHeight! > 24
@@ -25,7 +25,7 @@ const androidMenuHeight =
 
 export const normalizeWidth = (width: number) => {
   return PixelRatio.roundToNearestPixel(
-    width * (windowWidth / baseScreenWidth),
+    width * (windowWidth / baseScreenWidth)
   );
 };
 
@@ -40,7 +40,7 @@ const baseScreenHeight = 896;
 
 export const normalizeHeight = (height: number) => {
   return PixelRatio.roundToNearestPixel(
-    height * (windowHeight / baseScreenHeight),
+    height * (windowHeight / baseScreenHeight)
   );
 };
 
@@ -55,33 +55,33 @@ export const Consts = {
   isIos,
   isAndroid,
   platform: Platform.OS,
-  hitSlop: {top: 20, right: 20, bottom: 20, left: 20},
+  hitSlop: { top: 20, right: 20, bottom: 20, left: 20 },
   sliderWidth: normalizeWidth(300),
   knobWidth: normalizeWidth(40),
-  initBoxSize: {width: 0, height: 0},
+  initBoxSize: { width: 0, height: 0 },
   maxFontWeight: 9,
   maxFontSize: 100,
   maxShadow: 24,
   emptyStringInput: {
-    value: '',
-    errorMessage: '',
+    value: "",
+    errorMessage: "",
   },
   bottomTabsHeight: normalizeHeight(110),
 };
 
 export const LottieFiles = {
-  SPLASH: require('../assets/lottie/splash.json'),
-  WELCOME: require('../assets/lottie/welcome.json'),
-  IDEA: require('../assets/lottie/idea.json'),
-  AVATAR: require('../assets/lottie/avatar-creation.json'),
+  SPLASH: require("../assets/lottie/splash.json"),
+  WELCOME: require("../assets/lottie/welcome.json"),
+  IDEA: require("../assets/lottie/idea.json"),
+  AVATAR: require("../assets/lottie/avatar-creation.json"),
 };
 
 export const GS = StyleSheet.create({
   fullWidth: {
-    width: '100%',
+    width: "100%",
   },
   fullHeight: {
-    height: '100%',
+    height: "100%",
   },
   screenWidth: {
     width: Consts.screenWidth,
@@ -90,17 +90,17 @@ export const GS = StyleSheet.create({
     height: Consts.screenHeight,
   },
   row: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   center: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    // alignItems: 'center',
   },
   displayNone: {
-    display: 'none',
+    display: "none",
   },
   displayFlex: {
-    display: 'flex',
+    display: "flex",
   },
   flexOne: {
     flex: 1,
@@ -115,13 +115,13 @@ export const GS = StyleSheet.create({
     flexGrow: 1,
   },
   flexWrap: {
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
   },
   noWrap: {
-    flexWrap: 'nowrap',
+    flexWrap: "nowrap",
   },
   absolute: {
-    position: 'absolute',
+    position: "absolute",
   },
   width32: {
     width: normalizeWidth(32),
@@ -171,55 +171,55 @@ export const GS = StyleSheet.create({
   },
   // justify/align
   justifyStart: {
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
   },
   justifyCenter: {
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   justifySpaceBetween: {
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   justifySpaceAround: {
-    justifyContent: 'space-around',
+    justifyContent: "space-around",
   },
   justifySpaceEvenly: {
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
   },
   alignSelfStart: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
   },
   alignSelfEnd: {
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
   },
   alignSelfCenter: {
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   alignCenter: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   alignStart: {
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
   },
   alignEnd: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
   },
   // paddings
-  padding8: {padding: normalizeWidth(8)},
-  padding12: {padding: normalizeWidth(12)},
-  padding16: {padding: normalizeWidth(16)},
-  paddingHorizontal24: {paddingHorizontal: normalizeWidth(24)},
-  paddingHorizontal32: {paddingHorizontal: normalizeWidth(32)},
-  paddingVertical8: {paddingVertical: normalizeHeight(8)},
-  paddingVertical16: {paddingVertical: normalizeHeight(16)},
-  paddingHorizontal64: {paddingHorizontal: normalizeWidth(64)},
+  padding8: { padding: normalizeWidth(8) },
+  padding12: { padding: normalizeWidth(12) },
+  padding16: { padding: normalizeWidth(16) },
+  paddingHorizontal24: { paddingHorizontal: normalizeWidth(24) },
+  paddingHorizontal32: { paddingHorizontal: normalizeWidth(32) },
+  paddingVertical8: { paddingVertical: normalizeHeight(8) },
+  paddingVertical16: { paddingVertical: normalizeHeight(16) },
+  paddingHorizontal64: { paddingHorizontal: normalizeWidth(64) },
   paddingLeft8: {
     paddingLeft: normalizeWidth(8),
   },
   paddingLeft16: {
     paddingLeft: normalizeWidth(16),
   },
-  paddingTop16: {paddingTop: normalizeHeight(16)},
-  paddingBottom8: {paddingBottom: normalizeWidth(8)},
+  paddingTop16: { paddingTop: normalizeHeight(16) },
+  paddingBottom8: { paddingBottom: normalizeWidth(8) },
   paddingHorizontal8: {
     paddingHorizontal: normalizeWidth(8),
   },
@@ -227,13 +227,13 @@ export const GS = StyleSheet.create({
     paddingHorizontal: normalizeWidth(16),
   },
   // Margin
-  marginVertical8: {marginVertical: normalizeHeight(8)},
-  marginVertical16: {marginVertical: normalizeHeight(16)},
+  marginVertical8: { marginVertical: normalizeHeight(8) },
+  marginVertical16: { marginVertical: normalizeHeight(16) },
   marginTopAuto: {
-    marginTop: 'auto',
+    marginTop: "auto",
   },
   marginLeftAuto: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
   },
   marginSide8: {
     marginHorizontal: normalizeHeight(8),
@@ -289,7 +289,7 @@ export const GS = StyleSheet.create({
     padding: 0,
   },
   textAlignCenter: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   text16: {
     fontSize: normalizeWidth(16),
@@ -312,17 +312,18 @@ export const GS = StyleSheet.create({
   text32: {
     fontSize: normalizeWidth(32),
   },
+
   bold: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   weight500: {
-    fontWeight: '500',
+    fontWeight: "500",
   },
   weight400: {
-    fontWeight: '400',
+    fontWeight: "400",
   },
   baseShadow: {
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -332,19 +333,19 @@ export const GS = StyleSheet.create({
 
     elevation: 5,
   },
-  hitSlop20: {top: 20, right: 20, bottom: 20, left: 20},
+  hitSlop20: { top: 20, right: 20, bottom: 20, left: 20 },
   // colors
   bgRed: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
   bgBlue: {
-    backgroundColor: 'blue',
+    backgroundColor: "blue",
   },
   // components
   dividerStyle: {
     height: 1,
-    width: '100%',
-    backgroundColor: '#3b3b3b',
+    width: "100%",
+    backgroundColor: "#3b3b3b",
   },
   modalContentContainer: {
     flex: 1,
@@ -352,70 +353,70 @@ export const GS = StyleSheet.create({
     borderTopEndRadius: 36,
     borderTopStartRadius: 36,
     bottom: 0,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   modalSlide: {
     marginTop: 12,
-    alignSelf: 'center',
+    alignSelf: "center",
     height: 3,
     borderRadius: 999,
     width: normalizeWidth(44),
   },
   editComponent: {
     borderWidth: 3,
-    borderColor: 'red',
-    borderStyle: 'dashed',
+    borderColor: "red",
+    borderStyle: "dashed",
   },
-  width100: {width: 100},
+  width100: { width: 100 },
 });
 
 export const Colors = {
-  PrimaryColor: '#1F4ED8',
-  PrimaryBG: '#F9F7F7',
-  SecondaryBG: '#F6F6F6',
-  SecondaryColor: '#36a7ec',
-  LightText: '#EDF2F5',
-  SecondaryLightText: '#ADB5BD',
-  DarkText: '#040404',
-  White: '#FFF',
-  Black: '#000',
-  LoaderColor: '#efefee',
-  BrushColor: '#fff',
-  EmptyScreen: '#E5E5E5',
-  Error: 'red',
+  PrimaryColor: "#1F4ED8",
+  PrimaryBG: "#F9F7F7",
+  SecondaryBG: "#F6F6F6",
+  SecondaryColor: "#36a7ec",
+  LightText: "#EDF2F5",
+  SecondaryLightText: "#ADB5BD",
+  DarkText: "#040404",
+  White: "#FFF",
+  Black: "#000",
+  LoaderColor: "#efefee",
+  BrushColor: "#fff",
+  EmptyScreen: "#E5E5E5",
+  Error: "red",
 };
 
 export enum Themes {
-  DARK = 'DARK',
-  LIGHT = 'LIGHT',
+  DARK = "DARK",
+  LIGHT = "LIGHT",
 }
 
 export const colorsLightTheme = {
   [Themes.DARK]: {
     ...Colors,
-    PrimaryBG: '#FFF',
+    PrimaryBG: "#FFF",
   },
   [Themes.LIGHT]: {
     ...Colors,
-    PrimaryBG: '#FFF',
+    PrimaryBG: "#FFF",
   },
 };
 
 export const colorsDarkTheme = {
   [Themes.DARK]: {
     ...Colors,
-    PrimaryBG: '#000',
+    PrimaryBG: "#000",
   },
   [Themes.LIGHT]: {
     ...Colors,
-    White: '#000',
-    Black: '#FFF',
-    PrimaryColor: '#60A5FA',
-    SecondaryLightText: '#524A42',
-    PrimaryBG: '#18181A',
-    SecondaryBG: '#292525',
-    LightText: '#040404',
-    DarkText: '#EDF2F5',
-    EmptyScreen: '#1A1A1A',
+    White: "#000",
+    Black: "#FFF",
+    PrimaryColor: "#60A5FA",
+    SecondaryLightText: "#524A42",
+    PrimaryBG: "#18181A",
+    SecondaryBG: "#292525",
+    LightText: "#040404",
+    DarkText: "#EDF2F5",
+    EmptyScreen: "#1A1A1A",
   },
 };

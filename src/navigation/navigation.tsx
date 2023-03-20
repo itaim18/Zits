@@ -1,25 +1,13 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import {AppTransparentModal} from 'components/modals/appModal';
 import { Donate } from "components/screens/home/donate.screen";
 import { Profile } from "components/screens/home/Profile.screen";
 import { StartScreen } from "components/screens/home/start.screen";
-import { SettingsScreen } from "components/screens/settings/settings.screen";
 import { Community } from "components/screens/home/community.screen";
-import {
-  useAppIsDarkMode,
-  useAppShowSplashScreen,
-  useAppThemeColors,
-} from "state/appState";
+import { Image } from "react-native";
+import { useAppShowSplashScreen, useAppThemeColors } from "state/appState";
 import { useUserIsLoggedIn } from "state/userState";
-// import {useAppAuth} from 'hooks/useAppAuth.hook';
-import { MitnadvimScreen } from "components/screens/mitnadvim/mitnadvim.screen";
 import { SplashScreen } from "components/screens/splash/splash.screen";
-import { AppTransparentModal } from "modals/appModal";
 import { useUserType } from "state/userState";
 import React from "react";
 import { StatusBar } from "react-native";
@@ -30,6 +18,7 @@ import { HelpScreen } from "components/screens/home/help.screen";
 import { RecordScreen } from "components/screens/home/record.screen";
 import { LogsScreen } from "components/screens/home/logs.screen";
 import { FinishScreen } from "components/screens/home/finish.screen";
+import { Messages2, HeartSearch, User, Card } from "iconsax-react-native";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -67,18 +56,49 @@ export const Navigation = () => {
             <Stack.Group>
               <Stack.Screen name={SCREENS.Start} component={StartScreen} />
               <Stack.Screen name={SCREENS.Help} component={HelpScreen} />
-              {/* <Stack.Screen name={SCREENS.Settings} component={SettingsScreen} /> */}
               <Stack.Screen name={SCREENS.Finish} component={FinishScreen} />
               <Stack.Screen name={SCREENS.Record} component={RecordScreen} />
             </Stack.Group>
           </Stack.Navigator>
         ) : (
-          <Tab.Navigator>
+          <Tab.Navigator initialRouteName={SCREENS.Logs}>
             <Tab.Group>
-              <Tab.Screen name={SCREENS.Logs} component={LogsScreen} />
-              <Tab.Screen name={SCREENS.Community} component={Community} />
-              <Tab.Screen name={SCREENS.Profile} component={Profile} />
-              <Tab.Screen name={SCREENS.Donate} component={Donate} />
+              <Tab.Screen
+                name={SCREENS.Donate}
+                component={Donate}
+                options={{
+                  tabBarIcon: ({ color }) => <Card color={color} />,
+                  tabBarActiveTintColor: "#E27667",
+                  tabBarInactiveTintColor: "black",
+                }}
+              />
+              <Tab.Screen
+                name={SCREENS.Logs}
+                component={LogsScreen}
+                options={{
+                  tabBarIcon: ({ color }) => <HeartSearch color={color} />,
+                  tabBarActiveTintColor: "#E27667",
+                  tabBarInactiveTintColor: "black",
+                }}
+              />
+              <Tab.Screen
+                name={SCREENS.Community}
+                component={Community}
+                options={{
+                  tabBarIcon: ({ color }) => <Messages2 color={color} />,
+                  tabBarActiveTintColor: "#E27667",
+                  tabBarInactiveTintColor: "black",
+                }}
+              />
+              <Tab.Screen
+                name={SCREENS.Profile}
+                component={Profile}
+                options={{
+                  tabBarIcon: ({ color }) => <User color={color} />,
+                  tabBarActiveTintColor: "#E27667",
+                  tabBarInactiveTintColor: "black",
+                }}
+              />
             </Tab.Group>
           </Tab.Navigator>
         )

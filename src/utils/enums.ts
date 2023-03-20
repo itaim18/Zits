@@ -10,10 +10,10 @@ export enum SCREENS {
   Help = "Help",
   Record = "Record",
   Finish = "Finish",
-  Logs = "Logs",
-  Community = "Community",
-  Profile = "Profile",
-  Donate = "Donate",
+  Logs = "התנדבויות פתוחות",
+  Community = "קהילה",
+  Profile = "האיזור שלי",
+  Donate = "עזרו לנו להמשיך",
 }
 
 export enum TEXT_OPTION {

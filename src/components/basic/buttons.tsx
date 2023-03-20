@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, { ReactNode } from "react";
 import {
   StyleProp,
   StyleSheet,
@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   TouchableOpacityProps,
   ViewStyle,
-} from 'react-native';
-import {useAppThemeColors} from 'state/appState';
-import {GS} from 'utils/globalStyles';
-import {AppText} from './texts';
+} from "react-native";
+import { useAppThemeColors } from "state/appState";
+import { GS } from "utils/globalStyles";
+import { AppText } from "./texts";
 
 type AppButtonProps = {
   text?: string;
@@ -33,13 +33,14 @@ export const AppButton = ({
       style={[
         GS.alignSelfCenter,
         GS.borderRadius12,
-        GS.paddingHorizontal16,
-        GS.paddingVertical8,
-        {backgroundColor: bgColor || appColors.PrimaryColor},
-        disabled && {backgroundColor: appColors.SecondaryLightText},
+        GS.paddingHorizontal64,
+        GS.paddingVertical16,
+        { backgroundColor: bgColor || appColors.PrimaryColor },
+        disabled && { backgroundColor: appColors.SecondaryLightText },
         style,
       ]}
-      onPress={onPress}>
+      onPress={onPress}
+    >
       <AppText color="LightText" style={[GS.text18, GS.weight400, textStyle]}>
         {text}
       </AppText>
@@ -76,14 +77,14 @@ export const SheetOptionButton = ({
 
 const styles = StyleSheet.create({
   roundButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   sheeOptionBtn: {
     borderRadius: 0,
     paddingHorizontal: 0,
-    alignSelf: 'stretch',
-    width: '100%',
+    alignSelf: "stretch",
+    width: "100%",
     flex: 1,
   },
 });

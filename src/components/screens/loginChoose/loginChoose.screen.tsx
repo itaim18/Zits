@@ -1,11 +1,10 @@
-import { GetLottie } from "components/basic/lottie";
 import { AppButton } from "components/basic/buttons";
 import { AppTextHeader, AppText } from "components/basic/texts";
 import { ScreenView } from "components/basic/views";
 import { Dimensions, View, ScrollView, StyleSheet, Image } from "react-native";
 import React from "react";
 import { Strings } from "utils/strings";
-import { GS, LottieFiles, normalizeWidth } from "utils/globalStyles";
+import { GS } from "utils/globalStyles";
 import { useAppNavigation } from "hooks/common.hooks";
 import { useSetUserType } from "state/userState";
 const { width } = Dimensions.get("window");
@@ -15,28 +14,20 @@ export const LoginChoose = () => {
   const { navigate } = useAppNavigation();
   const images = [
     {
-      text: "connect",
-      source: {
-        uri: "https://cdn.pixabay.com/photo/2017/05/19/07/34/teacup-2325722__340.jpg",
-      },
+      text: "לעזור",
+      source: require("assets/images/be.png"),
     },
     {
-      text: "help",
-      source: {
-        uri: "https://cdn.pixabay.com/photo/2017/05/02/22/43/mushroom-2279558__340.jpg",
-      },
+      text: "להתחבר",
+      source: require("assets/images/connect.png"),
     },
     {
-      text: "love",
-      source: {
-        uri: "https://cdn.pixabay.com/photo/2017/05/18/21/54/tower-bridge-2324875__340.jpg",
-      },
+      text: "לספר",
+      source: require("assets/images/tell.png"),
     },
     {
-      text: "be",
-      source: {
-        uri: "https://cdn.pixabay.com/photo/2017/05/16/21/24/gorilla-2318998__340.jpg",
-      },
+      text: "להיות",
+      source: require("assets/images/help.png"),
     },
   ];
   const toRegistration = (userType) => {
@@ -45,8 +36,10 @@ export const LoginChoose = () => {
   };
 
   return (
-    <ScreenView style={[GS.alignCenter, GS.center]}>
-      <AppTextHeader>{Strings.screens.login.loginChoose}</AppTextHeader>
+    <ScreenView style={[GS.center]}>
+      <AppTextHeader style={{ textAlign: "right" }}>
+        {Strings.screens.login.loginChoose}
+      </AppTextHeader>
       <View style={styles.scrollContainer}>
         <ScrollView
           horizontal
@@ -54,17 +47,46 @@ export const LoginChoose = () => {
           showsHorizontalScrollIndicator={true}
         >
           {images?.map((image) => (
-            <View style={{ display: "flex", flexDirection: "column" }}>
-              {/* <Image style={styles.image} source={image.source} /> */}
-              <AppText style={[GS.paddingHorizontal16, { width }]}>
+            <View
+              style={{ display: "flex", flexDirection: "column", height: 480 }}
+            >
+              <Image style={styles.image} source={image.source} />
+              <AppText
+                style={[
+                  GS.paddingHorizontal16,
+                  {
+                    width,
+                    top: 0,
+                    right: 120,
+                    fontSize: 36,
+                    position: "absolute",
+                    zIndex: 5,
+                    color: "#2c2c2c",
+                  },
+                ]}
+              >
                 {image.text}
               </AppText>
             </View>
           ))}
         </ScrollView>
       </View>
-      <AppButton text="Survivor" onPress={() => toRegistration("survivor")} />
-      <AppButton text="Volunteer" onPress={() => toRegistration("volunteer")} />
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          marginTop: 24,
+          padding: 24,
+        }}
+      >
+        <AppButton
+          text="שורד"
+          onPress={() => toRegistration("survivor")}
+          style={{ padding: 48, marginRight: 24 }}
+        />
+        <AppButton text="מתנדב" onPress={() => toRegistration("volunteer")} />
+      </View>
     </ScreenView>
   );
 };
@@ -76,10 +98,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   scrollContainer: {
-    height,
+    height: height * 1.5,
+    direction: "rtl",
   },
   image: {
     width,
-    height,
+    height: height * 1.5,
   },
 });

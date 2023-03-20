@@ -8,6 +8,7 @@ import { useSetUserIsLoggedIn } from "state/userState";
 import * as Notifications from "expo-notifications";
 import storage from "@react-native-async-storage/async-storage";
 import { useSetAppToken, useAppToken } from "state/appState";
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,

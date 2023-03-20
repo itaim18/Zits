@@ -1,44 +1,110 @@
 import React from "react";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList, Linking, TouchableOpacity } from "react-native";
 import { GS } from "utils/globalStyles";
-import { AppText } from "./texts";
-import { useUserType } from "state/userState";
-
-// type LoginCardProps = {
-//   handleSubmitForm: any;
-// };
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
-];
+import { AppText, AppTextHeader, AppTextSubHeader } from "./texts";
+import { AppButton } from "./buttons";
+import { List } from "react-native-paper";
+import { collection, getDocs } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import firebase from "../../../firebaseConfig";
 
 export const LogsList = () => {
-  const userType = useUserType();
+  const [reportsData, setReportsData] = React.useState([]);
+  const db = getFirestore(firebase.apps[0]);
+  React.useEffect(() => {
+    const fetchReports = async () => {
+      const docRef = collection(db, "reports");
+      const docSnap = await getDocs(docRef);
+
+      docSnap.forEach((d) => {
+        setReportsData((prevState) => [...prevState, d.data()]);
+      });
+      console.log(reportsData);
+    };
+    fetchReports();
+    return () => {
+      setReportsData([]);
+    };
+  }, []);
+
   return (
     <View style={[GS.center, GS.flexOne]}>
-      <AppText>{userType} logs list</AppText>
       <FlatList
-        data={DATA}
-        renderItem={({ item }) => <Item title={item.title} />}
+        data={reportsData}
+        renderItem={({ item }) => <Item item={item} />}
         keyExtractor={(item) => item.id}
       />
     </View>
   );
 };
-type ItemProps = { title: string };
+type ItemProps = { item: any };
 
-const Item = ({ title }: ItemProps) => (
-  <View>
-    <Text>{title}</Text>
-  </View>
-);
+const Item = ({ item }: ItemProps) => {
+  const [expanded, setExpanded] = React.useState(false);
+  const handlePress = () => {
+    setExpanded((prevState) => !prevState);
+  };
+  const handleCall = () => {
+    Linking.openURL(`tel:${item?.tel}`);
+  };
+  function getFirstWord(str) {
+    const words = str.trim().split(" ");
+    return words[0];
+  }
+  return (
+    <View
+      style={{
+        backgroundColor: "#fff",
+        width: 340,
+        marginVertical: 16,
+        paddingVertical: 16,
+        borderRadius: 8,
+        shadowColor: "black",
+        marginHorizontal: 8,
+        shadowOpacity: 1,
+        shadowRadius: 24,
+        alignItems: "center",
+      }}
+    >
+      <AppTextSubHeader
+        style={{
+          width: 360,
+          alignSelf: "flex-end",
+          textAlign: "right",
+          fontSize: 20,
+          marginHorizontal: 4,
+        }}
+      >
+        {item.name} יצר Zits בנושא {item.title}
+      </AppTextSubHeader>
+      <List.Accordion
+        title={`רוצה לדעת עוד על ${getFirstWord(item.name)}`}
+        expanded={expanded}
+        onPress={handlePress}
+        style={{
+          width: 280,
+          direction: "rtl",
+          flexDirection: "column",
+          textAlign: "right",
+          color: "black",
+        }}
+      >
+        <AppTextSubHeader style={{ fontSize: 18, textAlign: "right" }}>
+          הוא צריך עזרה בקניות
+        </AppTextSubHeader>
+        <AppText style={{ textAlign: "right" }}>עיר:{item.city}</AppText>
+      </List.Accordion>
+
+      <AppButton
+        bgColor="#426D6B"
+        text="אני אקח את ה Zits"
+        onPress={handleCall}
+      />
+      <TouchableOpacity>
+        <AppTextHeader style={{ fontWeight: "800", fontSize: 24, margin: 24 }}>
+          כרגע אני לא פנוי
+        </AppTextHeader>
+      </TouchableOpacity>
+    </View>
+  );
+};

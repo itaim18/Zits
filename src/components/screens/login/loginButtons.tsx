@@ -25,8 +25,10 @@ import {
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
 import { useAppNavigation } from "hooks/common.hooks";
-
+import { AppInput } from "components/basic/texts";
+import { AppButton } from "components/basic/buttons";
 export const LoginButtons = ({ continueLogin }) => {
+  const phoneRef = React.useRef();
   const setUserTel = useSetUserTel();
   const { navigate } = useAppNavigation();
   const recaptchaVerifier = React.useRef(null);
@@ -71,22 +73,27 @@ export const LoginButtons = ({ continueLogin }) => {
   };
 
   return (
-    <View style={[GS.marginTop64, GS.fullWidth]}>
+    <View style={[GS.marginTop64, GS.fullWidth, GS.center, GS.alignCenter]}>
       <FirebaseRecaptchaVerifierModal
         ref={recaptchaVerifier}
         firebaseConfig={firebaseConfig}
       />
       {!showCode && (
         <>
-          <TextInput
-            placeholder="phone"
-            onChangeText={setPhoneNumber}
+          <AppInput
+            inputRef={phoneRef}
+            placeholder="טלפון"
+            value={phoneNumber}
+            setValue={setPhoneNumber}
             keyboardType="phone-pad"
-            autoComplete="tel"
+            style={{ direction: "rtl" }}
           />
-          <TouchableOpacity onPress={sendVerification}>
-            <Text>send code</Text>
-          </TouchableOpacity>
+
+          <AppButton
+            text="שלח קוד אימות"
+            onPress={sendVerification}
+            bgColor="#426D6B"
+          />
         </>
       )}
       {showCode && (
@@ -112,9 +119,12 @@ export const LoginButtons = ({ continueLogin }) => {
             )}
           />
 
-          <TouchableOpacity onPress={confirmCode}>
-            <Text>complete sign up</Text>
-          </TouchableOpacity>
+          <AppButton
+            text="השלם תהליך הרשמה"
+            onPress={confirmCode}
+            bgColor="#426D6B"
+            style={{ marginTop: 36 }}
+          />
         </>
       )}
     </View>
@@ -175,6 +185,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#00000030",
     textAlign: "center",
+    marginHorizontal: 8,
+    borderRadius: 8,
+    padding: 8,
+    paddingTop: 0,
   },
   focusCell: {
     borderColor: "#000",

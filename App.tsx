@@ -8,10 +8,12 @@ import ReactNativeRecoilPersist, {
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RecoilRoot } from "recoil";
 import registerNNPushToken from "native-notify";
+import { LogBox } from "react-native";
 const App = () => {
+  LogBox.ignoreAllLogs();
   registerNNPushToken(6787, "srGHwecJjfz76AXrYM2o61");
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{ direction: "rtl" }}>
       <RecoilRoot>
         <LogStateUpdates />
         <ReactNativeRecoilPersistGate store={ReactNativeRecoilPersist}>
