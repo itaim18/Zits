@@ -4,7 +4,6 @@ import { Donate } from "components/screens/home/donate.screen";
 import { Profile } from "components/screens/home/Profile.screen";
 import { StartScreen } from "components/screens/home/start.screen";
 import { Community } from "components/screens/home/community.screen";
-import { Image } from "react-native";
 import { useAppShowSplashScreen, useAppThemeColors } from "state/appState";
 import { useUserIsLoggedIn } from "state/userState";
 import { SplashScreen } from "components/screens/splash/splash.screen";
@@ -62,7 +61,15 @@ export const Navigation = () => {
           </Stack.Navigator>
         ) : (
           <Tab.Navigator initialRouteName={SCREENS.Logs}>
-            <Tab.Group>
+            <Tab.Group
+              screenOptions={{
+                headerTitleAlign: "center",
+                headerStyle: {
+                  backgroundColor: "#F7D8D4",
+                  borderRadius: 16,
+                },
+              }}
+            >
               <Tab.Screen
                 name={SCREENS.Donate}
                 component={Donate}

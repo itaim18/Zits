@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAppIsDarkMode, useAppThemeName } from "state/appState";
 import { useUserIsLoggedIn, useUserType } from "state/userState";
+
 import { useAppToken } from "state/appState";
 export const LogStateUpdates = () => {
   const isDarkMode = useAppIsDarkMode();

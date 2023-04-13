@@ -1,20 +1,16 @@
-import { GetLottie } from "components/basic/lottie";
 import { AppText } from "components/basic/texts";
 import { ScreenView } from "components/basic/views";
 import React from "react";
-import { GS, LottieFiles, normalizeWidth } from "utils/globalStyles";
+import { GS } from "utils/globalStyles";
 import { LoginButtons } from "./loginButtons";
-import { useAppNavigation } from "hooks/common.hooks";
 import { useFonts, Rubik_500Medium } from "@expo-google-fonts/rubik";
-import { Image, View } from "react-native";
+import { Image } from "react-native";
+import { useAppIsDarkMode } from "state/appState";
 export const Login = () => {
+  const isDark = useAppIsDarkMode();
   let [fontsLoaded] = useFonts({
     Rubik_500Medium,
   });
-  const { navigate } = useAppNavigation();
-  const continueLogin = () => {
-    navigate("LoginChoose");
-  };
 
   return (
     <ScreenView
@@ -31,7 +27,7 @@ export const Login = () => {
         הזן את הטלפון לטובת אימות
       </AppText>
 
-      <LoginButtons continueLogin={continueLogin} />
+      <LoginButtons />
 
       <Image
         source={require("assets/images/start.png")}

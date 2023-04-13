@@ -1,19 +1,9 @@
 import { ButtonOpacity } from "components/basic/buttons";
 import { AppText } from "components/basic/texts";
 import React from "react";
-import {
-  ActivityIndicator,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  Alert,
-  StyleSheet,
-} from "react-native";
+import { ActivityIndicator, View, Text, StyleSheet } from "react-native";
 import { useAppThemeColors } from "state/appState";
 import { GS } from "utils/globalStyles";
-import { useSetUser } from "state/userState";
-import { Strings } from "utils/strings";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "firebase/compat/app";
 import { firebaseConfig } from "../../../../firebaseConfig";
@@ -27,7 +17,10 @@ import {
 import { useAppNavigation } from "hooks/common.hooks";
 import { AppInput } from "components/basic/texts";
 import { AppButton } from "components/basic/buttons";
-export const LoginButtons = ({ continueLogin }) => {
+import { useAppIsDarkMode } from "state/appState";
+
+export const LoginButtons = () => {
+  const isDark = useAppIsDarkMode();
   const phoneRef = React.useRef();
   const setUserTel = useSetUserTel();
   const { navigate } = useAppNavigation();
@@ -68,8 +61,6 @@ export const LoginButtons = ({ continueLogin }) => {
         navigate("LoginChoose");
       })
       .catch((err) => alert(err));
-
-    Alert.alert("Login successful. welcome to elder-helper!");
   };
 
   return (
@@ -86,7 +77,11 @@ export const LoginButtons = ({ continueLogin }) => {
             value={phoneNumber}
             setValue={setPhoneNumber}
             keyboardType="phone-pad"
-            style={{ direction: "rtl" }}
+            style={{
+              direction: "rtl",
+              borderColor: isDark ? "#eeeeee" : "#000",
+              borderWidth: 2,
+            }}
           />
 
           <AppButton
