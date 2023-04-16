@@ -6,15 +6,17 @@
 
 ## App Walkthrough
 
-![](https://github.com/itaim18/Zits/blob/master/assets/videos/volunteer%20signup.mp4)
+https://user-images.githubusercontent.com/37772742/232308330-7c1745f4-e355-4d48-8a2e-022f7b0aee84.mp4
 
 > The volunteer signs up and explores the app.
 
-![](assets/videos/survivor%20side.mp4)
+
+https://user-images.githubusercontent.com/37772742/232308565-b9c2f952-8727-41a0-b729-7c797a45a94a.mp4
 
 > The survivor signs up, calls for help and is recorded for specifying the call
 
-![](assets/videos/volunteer%20acts.mp4)
+
+https://user-images.githubusercontent.com/37772742/232308096-e8829fb8-8286-4fb6-8f0e-1de859468d3a.mp4
 
 > The volunteer receives a notification sees the call and its detail and decide to call the survivor in order to help him
 
