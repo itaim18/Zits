@@ -4,6 +4,18 @@
 
 ---
 
+## App Walkthrough
+
+![](assets/videos/volunteer%20signup.mp4)
+
+> The volunteer signs up and explores the app.
+> ![](assets/videos/survivor%20side.mp4)
+> The survivor signs up, calls for help and is recorded for specifying the call
+> ![](assets/videos/volunteer%20acts.mp4)
+> The volunteer receives a notification sees the call and its detail and decide to call the survivor in order to help him
+
+---
+
 ## Download tutorial(For Android)
 
 [![Watch the video](https://img.youtube.com/vi/vezFcTHqScA/hqdefault.jpg)](https://www.youtube.com/watch?v=vezFcTHqScA&ab_channel=ItaiMizlish)
