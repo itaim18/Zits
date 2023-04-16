@@ -1,4 +1,4 @@
-import { View, FlatList, Text } from "react-native";
+import { View, Linking, TouchableOpacity } from "react-native";
 
 import {
   AppTextHeader,
@@ -57,13 +57,15 @@ const DATA = [
   },
 ];
 export const Community = () => {
+  const discordLink = async () => {
+    await Linking.openURL("https://discord.gg/hb3YUYPy");
+  };
   return (
     <SafeAreaView style={{ backgroundColor: "#fcf7ee" }}>
       <ScrollView>
         <AppTextHeader
           style={{ textAlign: "right", marginRight: 24, marginVertical: 24 }}
         >
-          {" "}
           Zits בקהילה
         </AppTextHeader>
         <View
@@ -77,42 +79,43 @@ export const Community = () => {
           {DATA.map((item) => {
             const Tag = item.tag;
             return (
-              <View
-                style={{
-                  backgroundColor: "#fff",
-                  padding: 8,
-                  margin: 16,
-                  width: 160,
-
-                  borderRadius: 12,
-                }}
-              >
-                <AppTextSubHeader
-                  key={item.id}
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  Zits {item.title}
-                </AppTextSubHeader>
+              <TouchableOpacity onPress={discordLink}>
                 <View
                   style={{
-                    width: 66,
-                    height: 66,
-                    borderRadius: 50,
-                    backgroundColor: "#F7D8D4",
-                    alignSelf: "center",
+                    backgroundColor: "#fff",
+                    padding: 8,
+                    margin: 16,
+                    width: 160,
+                    borderRadius: 12,
                   }}
-                ></View>
-                <Tag
-                  color="black"
-                  size={79}
-                  style={{ position: "relative", left: 0, bottom: 48 }}
-                />
-                <AppText>{item.amount} חברים בקהילה זו </AppText>
-              </View>
+                >
+                  <AppTextSubHeader
+                    key={item.id}
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    Zits {item.title}
+                  </AppTextSubHeader>
+                  <View
+                    style={{
+                      width: 66,
+                      height: 66,
+                      borderRadius: 50,
+                      backgroundColor: "#F7D8D4",
+                      alignSelf: "center",
+                    }}
+                  ></View>
+                  <Tag
+                    color="black"
+                    size={79}
+                    style={{ position: "relative", left: 0, bottom: 48 }}
+                  />
+                  <AppText>{item.amount} חברים בקהילה זו </AppText>
+                </View>
+              </TouchableOpacity>
             );
           })}
         </View>

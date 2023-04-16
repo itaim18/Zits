@@ -11,7 +11,7 @@ import registerNNPushToken from "native-notify";
 import { LogBox } from "react-native";
 const App = () => {
   LogBox.ignoreAllLogs();
-  registerNNPushToken(6787, "srGHwecJjfz76AXrYM2o61");
+  registerNNPushToken(6787, process.env.EXPO_APP_NOTIFICATIONS);
   return (
     <SafeAreaProvider style={{ direction: "rtl" }}>
       <RecoilRoot>

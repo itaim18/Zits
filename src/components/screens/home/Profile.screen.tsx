@@ -1,23 +1,12 @@
-import {
-  ImageBackground,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { ImageBackground, View, Image } from "react-native";
 import React from "react";
 import bgImage from "../../../assets/images/bg.png";
 import profileDefault from "../../../assets/images/profileDefault.png";
 import { AppTextHeader, AppText } from "components/basic/texts";
 import { ProfileField } from "components/basic/profileField";
-import { ScrollView } from "react-native";
+import { useUser } from "state/userState";
 import { MultipleSelectList } from "react-native-dropdown-select-list";
 
-const DATA = [
-  { name: "שם", input: "איתי מייזליש" },
-  { name: "עיר", input: "פתח תקווה" },
-  { name: "תאריך", input: "03.04.2000" },
-];
 const items = [
   {
     key: "92iijs7yta",
@@ -46,6 +35,13 @@ const items = [
 ];
 export const Profile = () => {
   const [languages, setLanguages] = React.useState([]);
+  const user = useUser();
+  console.log(user);
+  const DATA = [
+    { name: "שם", input: user.name },
+    { name: "עיר מגורים", input: user.city },
+    { name: "תאריך לידה", input: user.birth },
+  ];
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "#fcf7ee" }}>

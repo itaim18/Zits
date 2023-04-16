@@ -19,7 +19,7 @@ export const ProfileField = ({ input }) => {
       </AppText>
       <AppInput
         value={name}
-        placeholder="מה השם שלך?"
+        placeholder={`מה ה${input.name} שלך?`}
         inputRef={nameRef}
         setValue={setName}
         autoFocus
