@@ -6,9 +6,7 @@
 
 ## Download tutorial(For Android)
 
-<iframe width="420" height="315"
-src="https://www.youtube.com/watch?v=vezFcTHqScA&ab_channel=ItaiMizlish">
-</iframe>
+[![Watch the video](https://img.youtube.com/vi/vezFcTHqScA/hqdefault.jpg)](https://www.youtube.com/watch?v=vezFcTHqScA&ab_channel=ItaiMizlish)
 
 ---
 
