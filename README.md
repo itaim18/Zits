@@ -10,19 +10,18 @@
   <video src="https://user-images.githubusercontent.com/37772742/232308330-7c1745f4-e355-4d48-8a2e-022f7b0aee84.mp4" width="400" />
 
 
-The volunteer signs up and explores the app.
+  <p>The volunteer signs up and explores the app.</p>
 
 <video src="https://user-images.githubusercontent.com/37772742/232308565-b9c2f952-8727-41a0-b729-7c797a45a94a.mp4" width="400" />
+ <p>The survivor signs up, calls for help and is recorded for specifying the call</p>
 
-
-> The survivor signs up, calls for help and is recorded for specifying the call
 
 <video src="https://user-images.githubusercontent.com/37772742/232308096-e8829fb8-8286-4fb6-8f0e-1de859468d3a.mp4" width="400" />
 
-
-> The volunteer receives a notification sees the call and its detail and decide to call the survivor in order to help him
+ <p>The volunteer receives a notification sees the call and its detail and decide to call the survivor in order to help him</p>
   
 </div>
+
 ---
 
 ## Download tutorial(For Android)
