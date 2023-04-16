@@ -12,7 +12,7 @@
 </div>
 <br/>
 
-     The volunteer signs up and explores the app.
+> The volunteer signs up and explores the app.
 
 <br/>
 <div align="center">
@@ -20,13 +20,13 @@
 </div>
 <br/>
 
-        The survivor signs up, calls for help and is recorded for specifying the call
+> The survivor signs up, calls for help and is recorded for specifying the call
 
 <br/>
 <div align="center">
 <video src="https://user-images.githubusercontent.com/37772742/232308096-e8829fb8-8286-4fb6-8f0e-1de859468d3a.mp4" width="400" /></div><br/>
 
-    The volunteer receives a notification sees the call and its detail and decide to call the survivor in order to help him
+> The volunteer receives a notification sees the call and its detail and decide to call the survivor in order to help him
 
 <br/>
 
@@ -42,6 +42,28 @@
 </div>
 
 ## <br/>
+
+## To run it locally
+
+### Steps:
+
+- Have Android Emulator or Expo go app on physical device.
+- next, clone the project by running the following command on your terminal:
+
+        git clone https://github.com/itaim18/Zits.git
+
+- then run the following commands in order:
+- A)
+
+        cd zits && yarn
+
+- B)
+
+        npx expo start
+
+- Then a qr scan code will be revealed at the terminal you can either press a to run it on android emulator or scan the code with the expo go app to run it on your physical device
+
+---
 
 ## 🎨Figma (may not be available)
 
