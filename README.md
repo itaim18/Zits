@@ -6,9 +6,11 @@
 
 ## App Walkthrough
 
-https://user-images.githubusercontent.com/37772742/232308330-7c1745f4-e355-4d48-8a2e-022f7b0aee84.mp4
+<div align="center">
+  <video src="https://user-images.githubusercontent.com/37772742/232308330-7c1745f4-e355-4d48-8a2e-022f7b0aee84.mp4" width="400" />
+</div>
 
-> The volunteer signs up and explores the app.
+The volunteer signs up and explores the app.
 
 
 https://user-images.githubusercontent.com/37772742/232308565-b9c2f952-8727-41a0-b729-7c797a45a94a.mp4
